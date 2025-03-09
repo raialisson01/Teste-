@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Secreta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <button id="mensagemBtn">Abra a mensagem</button>
+        <p id="mensagem">Erika, você é incrível! Continue sempre brilhando.</p>
+    </div>
+
+    <script>
+        document.getElementById("mensagem").style.display = "none"; // Esconde a mensagem ao carregar
+
+        document.getElementById("mensagemBtn").addEventListener("click", function() {
+            document.getElementById("mensagem").style.display = "block"; // Mostra a mensagem
+            this.style.display = "none"; // Esconde o botão após o clique
+        });
+    </script>
+</body>
+</html>
