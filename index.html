@@ -1,24 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensagem Secreta</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Carrossel Suave</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .carrossel-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carrossel {
+      display: flex;
+      scroll-behavior: smooth;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .carrossel img {
+      min-width: 100%;
+      object-fit: cover;
+    }
+
+    .seta {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: rgba(0,0,0,0.3);
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1;
+    }
+
+    .esquerda {
+      left: 10px;
+    }
+
+    .direita {
+      right: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <button id="mensagemBtn">Abra a mensagem</button>
-        <p id="mensagem">Deveríamos aproveitar esse tempo que Enzo nao ta em casa e fazer alguma coisa, sem ser de noite pra não dar sono. Alguma coisa que faça bem a saude e queime calorias .</p>
-    </div>
 
-    <script>
-        document.getElementById("mensagem").style.display = "none"; // Esconde a mensagem ao carregar
+<div class="carrossel-container">
+  <button class="seta esquerda" onclick="mover(-1)">&#9664;</button>
+  <div class="carrossel" id="carrossel">
+    <img src="https://via.placeholder.com/800x400?text=Imagem+1" alt="Imagem 1">
+    <img src="https://via.placeholder.com/800x400?text=Imagem+2" alt="Imagem 2">
+    <img src="https://via.placeholder.com/800x400?text=Imagem+3" alt="Imagem 3">
+  </div>
+  <button class="seta direita" onclick="mover(1)">&#9654;</button>
+</div>
 
-        document.getElementById("mensagemBtn").addEventListener("click", function() {
-            document.getElementById("mensagem").style.display = "block"; // Mostra a mensagem
-            this.style.display = "none"; // Esconde o botão após o clique
-        });
-    </script>
+<script>
+  const carrossel = document.getElementById('carrossel');
+  let index = 0;
+
+  function mover(direcao) {
+    const total = carrossel.children.length;
+    index += direcao;
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    carrossel.scrollTo({
+      left: index * carrossel.clientWidth,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
 </body>
 </html>
